@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:mood-music": "node dist/mood-music/server/server.mjs"
+    "serve:ssr:mood-music": "node dist/mood-music/server/server.mjs",
+    "tailwind:build": "tailwindcss -i ./src/styles.scss -o ./dist/tailwind.css --watch"
   },
   "prettier": {
     "printWidth": 100,
@@ -45,6 +46,7 @@
     "@angular/build": "^21.1.0",
     "@angular/cli": "^21.1.0",
     "@angular/compiler-cli": "^21.1.0",
+    "@tailwindcss/postcss": "^4.1.18",
     "@types/express": "^5.0.1",
     "@types/howler": "^2.2.12",
     "@types/node": "^20.17.19",

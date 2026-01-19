@@ -1,51 +1,66 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Import Tailwind CSS */
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
-  }
+/* Custom theme configuration */
+@theme {
+  --color-mood-calm: #6366f1;
+  --color-mood-energetic: #f59e0b;
+  --color-mood-happy: #10b981;
+  --color-mood-sad: #8b5cf6;
+  --color-mood-angry: #ef4444;
+  --color-mood-neutral: #94a3b8;
+  
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+  --color-primary-900: #1e3a8a;
 
-  body {
-    @apply bg-gray-950 text-gray-100 antialiased min-h-screen;
-    font-feature-settings: "rlig" 1, "calt" 1;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 3s ease-in-out infinite;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
   }
 }
 
-@layer components {
-  .glass-panel {
-    @apply backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-2xl;
-  }
-  
-  .glass-panel-light {
-    @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl;
-  }
-  
-  .btn-primary {
-    @apply px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-xl 
-           transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] 
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-900;
-  }
-  
-  .btn-secondary {
-    @apply px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-200 font-medium rounded-xl 
-           border border-gray-700 transition-all duration-200 hover:scale-[1.02] 
-           active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-900;
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-mood-calm via-mood-happy to-mood-energetic bg-clip-text text-transparent;
-  }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
-  }
-  
-  .grid-background {
-    @apply bg-grid-pattern bg-[length:60px_60px] bg-center;
-  }
+/* Custom base styles */
+:root {
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+}
+
+body {
+  @apply bg-gray-950 text-gray-100 antialiased min-h-screen;
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Custom utility classes */
+@utility glass-panel {
+  @apply backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl shadow-2xl;
+}
+
+@utility glass-panel-light {
+  @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-2xl;
+}
+
+@utility gradient-text {
+  background: linear-gradient(to right, var(--color-mood-calm), var(--color-mood-happy), var(--color-mood-energetic));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-background {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+  background-position: center;
 }
 
 /* Custom scrollbar */
@@ -54,13 +69,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-900;
+  background: rgb(17 24 39);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-700 rounded-full;
+  background: rgb(55 65 81);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-600;
+  background: rgb(75 85 99);
 }
